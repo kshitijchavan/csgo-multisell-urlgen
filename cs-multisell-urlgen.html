@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSGO : Multisell URL Gen</title>
+</head>
+
+<script>
+    function generateUrl() {
+        var baseURL = document.getElementById("baseURL").innerHTML;
+        var appId = document.getElementById("appId").value;
+        var itemId = document.getElementById("itemId").value;
+        var itemField = document.getElementById("itemField");
+        var itemFieldChild = itemField.childNodes;
+
+        var finalURL = baseURL + appId + itemId;
+
+        for(i in itemFieldChild) {
+            if (itemFieldChild[i].nodeName == "SELECT") {
+                finalURL += itemFieldChild[i].value;
+            }
+        }
+
+        document.getElementById("finalURL").href = finalURL;
+        document.getElementById("finalURL").innerHTML = finalURL;
+
+    }
+
+    function addItem() {
+        var itemId = document.getElementById("itemId").cloneNode(true);
+        document.getElementById("itemField").appendChild(itemId);
+        document.getElementById("itemField").appendChild(document.createElement("br"));
+        document.getElementById("itemField").appendChild(document.createElement("br"));
+    }
+
+    function removeItem() {
+        var itemField = document.getElementById("itemField");
+        itemField.removeChild(itemField.lastChild);
+        itemField.removeChild(itemField.lastChild);
+        itemField.removeChild(itemField.lastChild);
+    }
+</script>
+
+<style>
+    .center {
+      text-align: center;
+      margin: auto;
+      width: 50%;
+      border: 3px solid #73AD21;
+      padding: 10px;
+    }
+    .wrap {
+        width: 500px;
+        word-wrap: break-word;  
+    }
+</style>
+
+<body class="center">
+
+    <a id="baseURL" style="visibility: hidden;">https://steamcommunity.com/market/multisell?</a>
+
+    </br>
+    <label for="appId">Choose App:</label>
+    <select id="appId" name="appId">
+        <option value="appid=730&contextid=2&">CS GO</option>
+    </select>
+
+    </br></br>
+    <label for="itemId">Choose Item:</label>
+    </br>
+    <select id="itemId" name="itemId">
+        <option value="">----------Select----------</option>
+        <option value="items%5B%5D=Danger%20Zone%20Case&">Danger Zone Case</option>
+        <option value="items%5B%5D=Operation%20Hydra%20Case&">Operation Hydra Case</option>
+        <option value="items%5B%5D=Shattered%20Web%20Case&">Shattered Web Case</option>
+        <option value="items%5B%5D=Operation%20Wildfire%20Case&">Operation Wildfire Case</option>
+        <option value="items%5B%5D=Operation%20Bravo%20Case&">Operation Bravo Case</option>
+        <option value="items%5B%5D=Operation%20Vanguard%20Weapon%20Case&">Operation Vanguard Weapon Case</option>
+        <option value="items%5B%5D=Operation%20Phoenix%20Weapon%20Case&">Operation Phoenix Weapon Case</option>
+        <option value="items%5B%5D=Operation%20Breakout%20Weapon%20Case&">Operation Breakout Weapon Case</option>
+        <option value="items%5B%5D=Operation%20Broken%20Fang%20Case&">Operation Broken Fang Case</option>
+        <option value="items%5B%5D=Winter%20Offensive%20Weapon%20Case&">Winter Offensive Weapon Case</option>
+        <option value="items%5B%5D=Fracture%20Case&">Fracture Case</option>
+        <option value="items%5B%5D=Chroma%20Case&">Chroma Case</option>
+        <option value="items%5B%5D=Chroma%202%20Case&">Chroma 2 Case</option>
+        <option value="items%5B%5D=Shadow%20Case&">Shadow Case</option>
+        <option value="items%5B%5D=Horizon%20Case&">Horizon Case</option>
+        <option value="items%5B%5D=Prisma%20Case&">Prisma Case</option>
+        <option value="items%5B%5D=Prisma%202%20Case&">Prisma 2 Case</option>
+        <option value="items%5B%5D=Snakebite%20Case&">Snakebite Case</option>
+        <option value="items%5B%5D=Falchion%20Case&">Falchion Case</option>
+        <option value="items%5B%5D=Revolver%20Case&">Revolver Case</option>
+        <option value="items%5B%5D=Clutch%20Case&">Clutch Case</option>
+        <option value="items%5B%5D=Gamma%20Case&">Gamma Case</option>
+        <option value="items%5B%5D=Gamma%202%20Case&">Gamma 2 Case</option>
+        <option value="items%5B%5D=Glove%20Case&">Glove Case</option>
+        <option value="items%5B%5D=Huntsman%20Weapon%20Case&">Huntsman Weapon Case</option>
+        <option value="items%5B%5D=Spectrum%20Case&">Spectrum Case</option>
+        <option value="items%5B%5D=Spectrum%202%20Case&">Spectrum 2 Case</option>
+        <option value="items%5B%5D=eSports%202013%20Case&">eSports 2013 Case</option>
+        <option value="items%5B%5D=eSports%202013%20Winter%20Case&">eSports 2013 Winter Case</option>
+        <option value="items%5B%5D=eSports%202014%20Summer%20Case&">eSports 2014 Summer Case</option>
+        <option value="items%5B%5D=CS%3AGO%20Weapon%20Case&">CS:GO Weapon Case</option>
+        <option value="items%5B%5D=CS%3AGO%20Weapon%20Case%202&">CS:GO Weapon Case 2</option>
+        <option value="items%5B%5D=CS%3AGO%20Weapon%20Case%203&">CS:GO Weapon Case 3</option>
+        <option value="items%5B%5D=CS20%20Case&">CS20 Case</option>
+    </select>
+    </br></br>
+    <div id="itemField"></div>
+
+    <input type="button" value="Add Item" id="addItem" onclick="addItem()">
+    <input type="button" value="Remove Item" id="removeItem" onclick="removeItem()">
+
+    </br></br>
+    <input type="button" value="Generate URL" id="genURL" onclick="generateUrl()">
+
+    </br></br>
+    <p><a id="finalURL" target="blank" class="wrap"></a></p>
+
+</body>
+
+</html>
